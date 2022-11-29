@@ -1,3 +1,5 @@
+#calculator program using (sum)
+
 number1= int(input ("enter the firstnumber:\n"))
 number2= int(input("enter the secondnumber:\n"))
 sum = int(number1) + int(number2)
