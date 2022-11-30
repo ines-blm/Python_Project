@@ -1,4 +1,4 @@
-#this code split and reverse thw word
+#this code split and reverse the word
 
 word = input("enter a world:\n")
 word_list = word.split(",")
