@@ -103,14 +103,18 @@ def send_email():
                         filename=filename)
         
     message.attach(csv_attachment)
-
-    ses_client = boto3.client("ses")
-    response2 = ses_client.send_raw_email(
-        Source="tshikudiines@gmail.com",
-        Destinations=["tshikudiines@gmail.com"],
-        RawMessage={"Data": message.as_string()}
+    try:
+        ses_client = boto3.client("ses")
+        response2 = ses_client.send_raw_email(
+            Source="tshikudiines@gmail.com",
+            Destinations=["tshikudiines@gmail.com"],
+            RawMessage={"Data": message.as_string()}
     )
-    print(response2)
+    except ClientError as error:
+     logger.error(f'Email not sent! {error}')
+        return False
+    return True  
+
 
 if __name__ =='__main__':
     logger.info(f' our list of Servers: {list_all_instances()}')
